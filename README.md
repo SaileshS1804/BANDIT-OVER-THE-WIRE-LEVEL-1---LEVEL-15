@@ -588,6 +588,73 @@ Level 13 --> Level 14:
     1. The password for the next level is stored in /etc/bandit_pass/bandit14 and can only be read by user bandit14. For this level, you don’t get the next password, but you get a private SSH key that can be used to log into the next level. Look at the commands that logged you into previous bandit levels, and find out how to use the key for this level.
 
 Code:
+    
+ls:
+
+    Lists directory contents to verify the presence of the private key file (sshkey.private).
+
+ssh -i sshkey.private bandit14@localhost -p 2220:
+
+    Connects via SSH to bandit14 using asymmetric key authentication instead of entering a password manually.
+
+-i sshkey.private:
+
+    Specifies the private key file to use for public key authentication.
+
+bandit14@localhost:
+
+    Target user and host (localhost refers to the current server itself).
+
+cat /etc/bandit_pass/bandit14:
+
+    Prints the stored password for bandit14 directly from the system password store once logged in.
+
+
+Result:
+
+    1. It give the password of the next level.
+
+
+<img width="1316" height="797" alt="level 13 to 14" src="https://github.com/user-attachments/assets/8fb179ea-aecd-4059-a136-e328c51a3951" />
+
+
+<img width="482" height="80" alt="level 14" src="https://github.com/user-attachments/assets/fe218532-69fa-4508-9c90-7635dcdd5264" />
+
+
+Level 14 --> Level 15:
+       
+    1. The password for the next level can be retrieved by submitting the password of the current level to port 30000 on localhost.
+
+Code:
+    
+nc localhost 30000:
+
+        Establishes a raw TCP connection to port 30000 running on the local machine (localhost).
+
+nc (Netcat):
+    A networking utility used for reading from and writing to network connections over TCP or UDP.
+
+localhost: 
+    
+    The hostname representing the local machine.
+
+30000:
+    
+    The network port where the validation service is listening.
+
+
+Result:
+
+    1.  It give the password of the next level.
+
+
+<img width="687" height="67" alt="level 15" src="https://github.com/user-attachments/assets/5039e776-5544-4997-9e8a-dc303584ec80" />
+
+
+
+
+
+
 
 
 
